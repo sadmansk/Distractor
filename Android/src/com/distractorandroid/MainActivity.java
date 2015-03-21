@@ -34,7 +34,7 @@ public class MainActivity extends Activity
         setContentView(R.layout.activity_main);
         
         
-        startService(new Intent(this, DistractService.class));
+        startService(new Intent(this, ChatHeadService.class));
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
