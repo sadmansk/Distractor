@@ -1,5 +1,5 @@
 // Header File
-
+/*
 #ifndef BUBBLE_H
 #define BUBBLE_H
 
@@ -32,4 +32,4 @@ bool mMoving;
 QPoint offset;
 };
 
-#endif // BUBBLE_H
+#endif // BUBBLE_H*/

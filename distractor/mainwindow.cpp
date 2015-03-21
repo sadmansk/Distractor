@@ -1,23 +1,16 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include <QtWidgets>
 
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+#include <QtGui>
+MainWindow::MainWindow (QWidget *parent) : QWidget(parent)
 {
-    ui->setupUi(this);
-    setWindowTitle(tr("Distractor"));
+    QMainWindow* t=(QMainWindow*)(this);
+    ui.setupUi(t);
+    //setWindowTitle(tr("Distractor"));
     minTime = 5 * 60000;
     maxTime = 20 * 60000; //time in minutes
 
     interval = rand() % (maxTime - minTime) + minTime;
     timer.start(interval, this);
-}
-
-MainWindow::~MainWindow()
-{
-    delete ui;
 }
 
 void MainWindow::timerEvent (QTimerEvent *event) {
@@ -30,4 +23,9 @@ void MainWindow::timerEvent (QTimerEvent *event) {
     //reset the timer
     interval = rand() % (maxTime - minTime) + minTime;
     timer.start(interval, this);
+}
+void MainWindow::on_pushButton_clicked()
+{
+    //ui.outputWidget->setText(QString::number(value + ui.inputSpinBox2->value()));
+    qDebug("Clicked");
 }

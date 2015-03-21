@@ -1,5 +1,5 @@
 // C++ File#include <QWidget>
-
+/*
 #include "bubble.h"
 #include "ui_bubble.h"
 #include <QtGui>
@@ -56,4 +56,4 @@ mMoving = false;
 
 void Bubble::repositionBubble(){
 
-}
+}*/
