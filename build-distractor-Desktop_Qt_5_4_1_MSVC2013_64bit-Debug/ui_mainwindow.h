@@ -17,9 +17,13 @@
 #include <QtWidgets/QDial>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QScrollArea>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
+#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -38,6 +42,12 @@ public:
     QLabel *label_2;
     QLabel *label_3;
     QWidget *tab_2;
+    QScrollArea *scrollArea;
+    QWidget *scrollAreaWidgetContents;
+    QListWidget *listWidget;
+    QTextEdit *textEdit;
+    QLabel *label_4;
+    QPushButton *pushButton;
     QWidget *tab_3;
     QWidget *tab_4;
     QStatusBar *statusBar;
@@ -46,7 +56,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(400, 300);
+        MainWindow->resize(401, 308);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         tabWidget = new QTabWidget(centralWidget);
@@ -81,6 +91,27 @@ public:
         tabWidget->addTab(tab_1, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QStringLiteral("tab_2"));
+        scrollArea = new QScrollArea(tab_2);
+        scrollArea->setObjectName(QStringLiteral("scrollArea"));
+        scrollArea->setGeometry(QRect(180, 0, 221, 261));
+        scrollArea->setWidgetResizable(true);
+        scrollAreaWidgetContents = new QWidget();
+        scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 219, 259));
+        listWidget = new QListWidget(scrollAreaWidgetContents);
+        new QListWidgetItem(listWidget);
+        listWidget->setObjectName(QStringLiteral("listWidget"));
+        listWidget->setGeometry(QRect(0, 0, 221, 261));
+        scrollArea->setWidget(scrollAreaWidgetContents);
+        textEdit = new QTextEdit(tab_2);
+        textEdit->setObjectName(QStringLiteral("textEdit"));
+        textEdit->setGeometry(QRect(10, 110, 151, 25));
+        label_4 = new QLabel(tab_2);
+        label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setGeometry(QRect(10, 80, 71, 16));
+        pushButton = new QPushButton(tab_2);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setGeometry(QRect(10, 150, 141, 23));
         tabWidget->addTab(tab_2, QString());
         tab_3 = new QWidget();
         tab_3->setObjectName(QStringLiteral("tab_3"));
@@ -95,7 +126,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -111,6 +142,20 @@ public:
         label_2->setText(QApplication::translate("MainWindow", "I don't wanna work", 0));
         label_3->setText(QApplication::translate("MainWindow", "Too many alerts", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_1), QApplication::translate("MainWindow", "Settings", 0));
+
+        const bool __sortingEnabled = listWidget->isSortingEnabled();
+        listWidget->setSortingEnabled(false);
+        QListWidgetItem *___qlistwidgetitem = listWidget->item(0);
+        ___qlistwidgetitem->setText(QApplication::translate("MainWindow", "Subreddit", 0));
+        listWidget->setSortingEnabled(__sortingEnabled);
+
+        textEdit->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", 0));
+        label_4->setText(QApplication::translate("MainWindow", "Subreddit:", 0));
+        pushButton->setText(QApplication::translate("MainWindow", "Add to Possible Distractions", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "Reddit", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("MainWindow", "Facebook", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_4), QApplication::translate("MainWindow", "Twitter", 0));
