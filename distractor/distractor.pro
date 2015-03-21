@@ -13,8 +13,10 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    bubble.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    bubble.h
 
 FORMS    += mainwindow.ui

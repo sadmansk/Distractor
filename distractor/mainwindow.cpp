@@ -22,7 +22,11 @@ MainWindow::~MainWindow()
 
 void MainWindow::timerEvent (QTimerEvent *event) {
     //gets called at a random interval between 5 and 20 mins
-
+    if (event->timerId() == timer.timerId()) {
+        //pop the bubble
+    } else {
+        QWidget::timerEvent(event);
+    }
     //reset the timer
     interval = rand() % (maxTime - minTime) + minTime;
     timer.start(interval, this);
