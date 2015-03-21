@@ -57,7 +57,7 @@ public class NavigationDrawerFragment extends Fragment {
     private int mCurrentSelectedPosition = 0;
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
-
+    private MainActivity activity;
     public NavigationDrawerFragment() {
     }
 
@@ -77,6 +77,10 @@ public class NavigationDrawerFragment extends Fragment {
 
         // Select either the default item (0) or the last selected item.
         selectItem(mCurrentSelectedPosition);
+    }
+    protected void setActivity(MainActivity activitySet)
+    {
+    	activity = activitySet;
     }
 
     @Override
@@ -248,6 +252,8 @@ public class NavigationDrawerFragment extends Fragment {
         }
 
         if (item.getItemId() == R.id.action_example) {
+        	//TODO
+        	activity.sendBroadcast();
             Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
             return true;
         }
