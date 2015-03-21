@@ -26,8 +26,8 @@ implements NavigationDrawerFragment.NavigationDrawerCallbacks {
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
-    private CharSequence mTitle;@
-    Override
+    private CharSequence mTitle;
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -37,8 +37,7 @@ implements NavigationDrawerFragment.NavigationDrawerCallbacks {
         mTitle = getTitle();
 
         // Set up the drawer.
-        mNavigationDrawerFragment.setUp(
-            R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
+        mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
         mNavigationDrawerFragment.setActivity(this);
     }
 
@@ -66,10 +65,12 @@ implements NavigationDrawerFragment.NavigationDrawerCallbacks {
         }
     }
     protected static String BROADCAST_ACTION = "com.distractorandroid.SHOWTOAST";
-    protected void sendBroadcast()
+    protected void sendBroadcast(String action, String information)
     {
     	Intent broadcast = new Intent();
         broadcast.setAction(BROADCAST_ACTION);
+        broadcast.putExtra("ACTION", action);
+        broadcast.putExtra("INFORMATION", information);
         Log.e("myid", "testingSend");
         sendBroadcast(broadcast);
     }

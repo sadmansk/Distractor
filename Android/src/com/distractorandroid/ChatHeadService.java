@@ -1,6 +1,7 @@
 package com.distractorandroid;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import android.app.Service;
 import android.content.BroadcastReceiver;
@@ -9,6 +10,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.PixelFormat;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
@@ -23,16 +25,29 @@ import android.widget.Toast;
 public class ChatHeadService extends Service {
 
     private WindowManager windowManager;
+    private Random random = new Random();
     private ArrayList < ImageView > chatHeads = new ArrayList < ImageView > ();
     protected ArrayList < WindowManager.LayoutParams > params = new ArrayList < WindowManager.LayoutParams > ();
     private final BroadcastReceiver receiver = new BroadcastReceiver() {
     	@Override
         public void onReceive(Context context, Intent intent) {
-    		killBubbles();
-            Toast.makeText(getApplicationContext(), "Just one more...", Toast.LENGTH_LONG).show();
-            makeNewBubble();
-            Toast.makeText(getApplicationContext(), "Okay I'm done, for now", Toast.LENGTH_LONG).show();
-            noMoreBubbles = 15;
+    		Bundle bundle = intent.getExtras();
+    		String action = (String) bundle.get("ACTION");
+    		String info = (String) bundle.get("INFORMATION");
+    		if(action.equals("justStop"))
+    		{
+    			killBubbles();
+	            Toast.makeText(getApplicationContext(), "Just one more...", Toast.LENGTH_LONG).show();
+	            makeNewBubble();
+	            Toast.makeText(getApplicationContext(), "Okay I'm done, for now", Toast.LENGTH_LONG).show();
+	            noMoreBubbles = 5;
+    		} else if(action.equals("addSub"))
+    		{
+    			subReddits.add(info);
+    		} else if(action.equals("removeSub"))
+    		{
+    			subReddits.remove(info);
+    		}
     	}
     };
     private int noMoreBubbles;
@@ -49,9 +64,9 @@ public class ChatHeadService extends Service {
         		noMoreBubbles --;
         	} else
         	{
-        		makeNewBubble();
+        		//makeNewBubble();
         	}
-            mHandler.postDelayed(this, (int)(Math.random() * 5000));
+            mHandler.postDelayed(this, (int)(Math.random() * 50000));
         }
     };@
     Override public void onCreate() {
@@ -136,11 +151,18 @@ public class ChatHeadService extends Service {
         chatHeads.add(newChatHead);
         params.add(newParams);
     }
+    ArrayList<String> subReddits = new ArrayList<String>();
     protected void popBubble(ImageView bubbleToPop)
     {
     	windowManager.removeView(bubbleToPop);
     	bubbleToPop.setOnTouchListener(null);
-    	getApplication().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.reddit.com/")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+    	String subName = "http://www.reddit.com";
+    	if(subReddits.size() != 0)
+    	{
+	    	int randomInt = random.nextInt(subReddits.size());
+	    	subName.concat(subReddits.get(randomInt));
+    	}
+    	getApplication().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(subName)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }
     protected void killBubbles() {
         for (int i = 0; i < chatHeads.size(); i++) {
