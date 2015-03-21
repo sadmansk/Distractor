@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.PixelFormat;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
@@ -27,11 +28,14 @@ public class ChatHeadService extends Service {
     private final BroadcastReceiver receiver = new BroadcastReceiver() {
     	@Override
         public void onReceive(Context context, Intent intent) {
-    		Log.i("myid","testRecieve");
-            // TODO Auto-generated method stub
-            Toast.makeText(getApplicationContext(), "%%%%%%%%%%%%received", Toast.LENGTH_SHORT).show();
-        }
+    		killBubbles();
+            Toast.makeText(getApplicationContext(), "Just one more...", Toast.LENGTH_LONG).show();
+            makeNewBubble();
+            Toast.makeText(getApplicationContext(), "Okay I'm done, for now", Toast.LENGTH_LONG).show();
+            noMoreBubbles = 15;
+    	}
     };
+    private int noMoreBubbles;
     @Override
     public IBinder onBind(Intent intent) {
         // Not used
@@ -40,8 +44,14 @@ public class ChatHeadService extends Service {
     private Handler mHandler = new Handler();
     protected Runnable frameCaller = new Runnable() {
         public void run() {
-            makeNewBubble();
-            mHandler.postDelayed(this, (int)(Math.random() * 10000));
+        	if(noMoreBubbles > 0)
+        	{
+        		noMoreBubbles --;
+        	} else
+        	{
+        		makeNewBubble();
+        	}
+            mHandler.postDelayed(this, (int)(Math.random() * 5000));
         }
     };@
     Override public void onCreate() {
@@ -56,7 +66,7 @@ public class ChatHeadService extends Service {
     }
     protected void makeNewBubble() {
         final ImageView newChatHead = new ImageView(this);
-        newChatHead.setImageResource(R.drawable.ic_launcher);
+        newChatHead.setImageResource(R.drawable.reddit);
 
         final WindowManager.LayoutParams newParams = new WindowManager.LayoutParams(
             WindowManager.LayoutParams.WRAP_CONTENT,
@@ -103,8 +113,7 @@ public class ChatHeadService extends Service {
                         double timeDif = Math.abs(time - System.currentTimeMillis());
                         if(timeDif < 100 && distance < 200)
                         {
-                        	windowManager.removeView(newChatHead);
-                        	newChatHead.setOnTouchListener(null);
+                        	popBubble(newChatHead);
                         }
                         return false;
                     case MotionEvent.ACTION_MOVE:
@@ -127,9 +136,18 @@ public class ChatHeadService extends Service {
         chatHeads.add(newChatHead);
         params.add(newParams);
     }
+    protected void popBubble(ImageView bubbleToPop)
+    {
+    	windowManager.removeView(bubbleToPop);
+    	bubbleToPop.setOnTouchListener(null);
+    	getApplication().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.reddit.com/")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+    }
     protected void killBubbles() {
         for (int i = 0; i < chatHeads.size(); i++) {
-            windowManager.removeView(chatHeads.get(i));
+        	if(chatHeads.get(i) != null)
+        	{
+        		windowManager.removeView(chatHeads.get(i));
+        	}
         }
         chatHeads.clear();
         params.clear();
