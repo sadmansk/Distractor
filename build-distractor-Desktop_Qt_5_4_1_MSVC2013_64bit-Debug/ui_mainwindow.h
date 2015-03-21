@@ -48,8 +48,8 @@ public:
     QTextEdit *textEdit;
     QLabel *label_4;
     QPushButton *pushButton;
+    QLabel *label_5;
     QWidget *tab_3;
-    QWidget *tab_4;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -93,13 +93,12 @@ public:
         tab_2->setObjectName(QStringLiteral("tab_2"));
         scrollArea = new QScrollArea(tab_2);
         scrollArea->setObjectName(QStringLiteral("scrollArea"));
-        scrollArea->setGeometry(QRect(180, 0, 221, 261));
+        scrollArea->setGeometry(QRect(180, 50, 221, 211));
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 219, 259));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 219, 209));
         listWidget = new QListWidget(scrollAreaWidgetContents);
-        new QListWidgetItem(listWidget);
         listWidget->setObjectName(QStringLiteral("listWidget"));
         listWidget->setGeometry(QRect(0, 0, 221, 261));
         scrollArea->setWidget(scrollAreaWidgetContents);
@@ -112,13 +111,19 @@ public:
         pushButton = new QPushButton(tab_2);
         pushButton->setObjectName(QStringLiteral("pushButton"));
         pushButton->setGeometry(QRect(10, 150, 141, 23));
+        label_5 = new QLabel(tab_2);
+        label_5->setObjectName(QStringLiteral("label_5"));
+        label_5->setGeometry(QRect(230, 20, 91, 16));
+        QFont font1;
+        font1.setFamily(QStringLiteral("Microsoft NeoGothic"));
+        font1.setPointSize(13);
+        font1.setBold(true);
+        font1.setWeight(75);
+        label_5->setFont(font1);
         tabWidget->addTab(tab_2, QString());
         tab_3 = new QWidget();
         tab_3->setObjectName(QStringLiteral("tab_3"));
         tabWidget->addTab(tab_3, QString());
-        tab_4 = new QWidget();
-        tab_4->setObjectName(QStringLiteral("tab_4"));
-        tabWidget->addTab(tab_4, QString());
         MainWindow->setCentralWidget(centralWidget);
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
@@ -142,13 +147,6 @@ public:
         label_2->setText(QApplication::translate("MainWindow", "I don't wanna work", 0));
         label_3->setText(QApplication::translate("MainWindow", "Too many alerts", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_1), QApplication::translate("MainWindow", "Settings", 0));
-
-        const bool __sortingEnabled = listWidget->isSortingEnabled();
-        listWidget->setSortingEnabled(false);
-        QListWidgetItem *___qlistwidgetitem = listWidget->item(0);
-        ___qlistwidgetitem->setText(QApplication::translate("MainWindow", "Subreddit", 0));
-        listWidget->setSortingEnabled(__sortingEnabled);
-
         textEdit->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -156,9 +154,9 @@ public:
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", 0));
         label_4->setText(QApplication::translate("MainWindow", "Subreddit:", 0));
         pushButton->setText(QApplication::translate("MainWindow", "Add to Possible Distractions", 0));
+        label_5->setText(QApplication::translate("MainWindow", "Subreddits:", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "Reddit", 0));
-        tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("MainWindow", "Facebook", 0));
-        tabWidget->setTabText(tabWidget->indexOf(tab_4), QApplication::translate("MainWindow", "Twitter", 0));
+        tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("MainWindow", "Youtube", 0));
     } // retranslateUi
 
 };
