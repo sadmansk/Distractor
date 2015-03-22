@@ -41,13 +41,19 @@ public class ChatHeadService extends Service {
 	            makeNewBubble();
 	            Toast.makeText(getApplicationContext(), "Okay I'm done, for now", Toast.LENGTH_LONG).show();
 	            noMoreBubbles = 5;
-    		} else if(action.equals("addSub"))
+    		} else if(action.equals("addReddit"))
     		{
     			subReddits.add(info);
-    		} else if(action.equals("removeSub"))
+    		} else if(action.equals("removeReddit"))
     		{
     			subReddits.remove(info);
-    		}
+    		} else if(action.equals("addYoutube"))
+     		{
+    			subYoutubes.add(info);
+     		} else if(action.equals("removeYoutube"))
+     		{
+     			subYoutubes.remove(info);
+     		}
     	}
     };
     private int noMoreBubbles;
@@ -64,7 +70,7 @@ public class ChatHeadService extends Service {
         		noMoreBubbles --;
         	} else
         	{
-        		//makeNewBubble();
+        		makeNewBubble();
         	}
             mHandler.postDelayed(this, (int)(Math.random() * 50000));
         }
@@ -81,7 +87,14 @@ public class ChatHeadService extends Service {
     }
     protected void makeNewBubble() {
         final ImageView newChatHead = new ImageView(this);
-        newChatHead.setImageResource(R.drawable.reddit);
+        final boolean isYoutube = Math.random() > 0.5;
+        if(isYoutube)
+        {
+        	newChatHead.setImageResource(R.drawable.youtube);
+        } else
+        {
+        	newChatHead.setImageResource(R.drawable.reddit);
+        }
 
         final WindowManager.LayoutParams newParams = new WindowManager.LayoutParams(
             WindowManager.LayoutParams.WRAP_CONTENT,
@@ -103,6 +116,7 @@ public class ChatHeadService extends Service {
 
 
         newChatHead.setOnTouchListener(new View.OnTouchListener() {
+        	private boolean isYoutubeBubble = isYoutube;
             private int initialX;
             private int initialY;
             private float initialTouchX;
@@ -128,7 +142,7 @@ public class ChatHeadService extends Service {
                         double timeDif = Math.abs(time - System.currentTimeMillis());
                         if(timeDif < 100 && distance < 200)
                         {
-                        	popBubble(newChatHead);
+                        	popBubble(newChatHead, isYoutube);
                         }
                         return false;
                     case MotionEvent.ACTION_MOVE:
@@ -152,15 +166,29 @@ public class ChatHeadService extends Service {
         params.add(newParams);
     }
     ArrayList<String> subReddits = new ArrayList<String>();
-    protected void popBubble(ImageView bubbleToPop)
+    ArrayList<String> subYoutubes = new ArrayList<String>();
+    protected void popBubble(ImageView bubbleToPop, boolean isYoutube)
     {
     	windowManager.removeView(bubbleToPop);
     	bubbleToPop.setOnTouchListener(null);
-    	String subName = "http://www.reddit.com";
-    	if(subReddits.size() != 0)
+    	bubbleToPop = null;
+    	String subName;
+    	if(isYoutube)
     	{
-	    	int randomInt = random.nextInt(subReddits.size());
-	    	subName.concat(subReddits.get(randomInt));
+    		subName = "https://youtube.com/";
+    		if(subYoutubes.size() != 0)
+        	{
+    	    	int randomInt = random.nextInt(subYoutubes.size());
+    	    	subName.concat(subYoutubes.get(randomInt));
+        	}
+    	} else
+    	{
+    		subName = "http://www.reddit.com/";
+    		if(subReddits.size() != 0)
+    	    {
+    	   	    int randomInt = random.nextInt(subReddits.size());
+    	   	    subName.concat(subReddits.get(randomInt));
+    	    }
     	}
     	getApplication().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(subName)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }

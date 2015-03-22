@@ -1,5 +1,9 @@
 package com.distractorandroid;
 
+import java.util.ArrayList;
+
+import com.gc.materialdesign.views.ButtonFloatSmall;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
@@ -13,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TableLayout;
 
 
 public class MainActivity extends Activity
@@ -27,12 +32,19 @@ implements NavigationDrawerFragment.NavigationDrawerCallbacks {
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
+    private ArrayList<String> reddits = new ArrayList<String>(); // preset, rule, [start/end][day, hour, min]
+	private ArrayList<String> youtubes = new ArrayList<String>(); // program person action number
+	private ButtonFloatSmall editYoutube;
+	private ButtonFloatSmall editReddit;
+	private TableLayout redditTable;
+	private TableLayout youtubeTable;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         startService(new Intent(this, ChatHeadService.class));
-        mNavigationDrawerFragment = (NavigationDrawerFragment)getFragmentManager().findFragmentById(R.id.navigation_drawer);
+        mNavigationDrawerFragment = (NavigationDrawerFragment)
+        getFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
 
         // Set up the drawer.
