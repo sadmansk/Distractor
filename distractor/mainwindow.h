@@ -2,14 +2,21 @@
 #define MAINWINDOW_H
 
 #include "ui_mainwindow.h"
+#include <QWidget>
 #include <QBasicTimer>
+
+namespace Ui {
+class MainWindow;
+}
+
 class MainWindow : public QWidget
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = 0);
-    Ui::MainWindow ui;
+    explicit MainWindow(QWidget *parent = 0);
+    //~MainWindow();
+    Ui::MainWindow *ui;
 
 protected:
     void timerEvent (QTimerEvent *event) Q_DECL_OVERRIDE;
