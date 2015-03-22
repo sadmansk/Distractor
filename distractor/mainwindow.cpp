@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <locale>
 #include <sstream>
+#include <vector>
 #include <QtGui>
 MainWindow::MainWindow (QWidget *parent) : QWidget(parent),ui(new Ui::MainWindow)
 {
@@ -30,7 +31,7 @@ void MainWindow::on_pushButton_clicked()
 {
     //ui.outputWidget->setText(QString::number(value + ui.inputSpinBox2->value()));
     qDebug(ui->textEdit->toPlainText().toLocal8Bit().data());
-    //ui->textEdit->addItem(ui->textEdit->toPlainText());
+    ui->listWidget->addItem(ui->textEdit->toPlainText());
     qDebug("Clicked");
 }
 
@@ -44,3 +45,4 @@ int MainWindow::getDial()
 {
     return dialSetting;
 }
+

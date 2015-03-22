@@ -5,6 +5,8 @@
 #include <QWidget>
 #include <QBasicTimer>
 #include <QString>
+#include <vector>
+#include <string>
 
 namespace Ui {
 class MainWindow;
