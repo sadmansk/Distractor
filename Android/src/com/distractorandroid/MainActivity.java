@@ -50,6 +50,39 @@ implements NavigationDrawerFragment.NavigationDrawerCallbacks {
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
         mNavigationDrawerFragment.setActivity(this);
+        reddits.add("r/bennythebullgifs/");
+        reddits.add("r/funny/");
+        reddits.add("r/AdviceAnimals/");
+        reddits.add("r/pics/");
+        reddits.add("r/todayilearned/");
+        reddits.add("r/aww/");
+        reddits.add("r/WTF/");
+        reddits.add("r/BlackPeopleTwitter/");
+        reddits.add("r/gifs/");
+        reddits.add("r/leagueoflegends/");
+        reddits.add("r/videos/");
+        reddits.add("r/gaming/");
+        youtubes.add("pRpvdcjkT3k");
+        youtubes.add("Te4wx4jtiEA");
+        youtubes.add("efTj6UYzvk4");
+        youtubes.add("Qit3ALTelOo");
+        youtubes.add("0Bmhjf0rKe8");
+        youtubes.add("z3U0udLH974");
+        youtubes.add("Vw4KVoEVcr0");
+        youtubes.add("_ZSbC09qgLI");
+        youtubes.add("_ZSbC09qgLI");
+        youtubes.add("J---aiyznGQ");
+        youtubes.add("C_S5cXbXe-4");
+        youtubes.add("X3iFhLdWjqc");
+        youtubes.add("hPzNl6NKAG0");
+        youtubes.add("TJ5UJv9A4jE");
+        youtubes.add("eV71mpbvl-g");
+        youtubes.add("gCH68g_R5Iw");
+        youtubes.add("S5-D0f6nHSQ");
+        youtubes.add("QT2NOQ0P4t8");
+        youtubes.add("598IdFlOXcQ");
+        youtubes.add("HECa3bAFAYk");
+        youtubes.add("tcxhOGyrCtI");
     }
 
     @
