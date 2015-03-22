@@ -1,0 +1,37 @@
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</head>
+ 
+<script type="text/javascript">
+$(document).ready(function() {
+ 
+var videos = [
+'pRpvdcjkT3k',
+'Te4wx4jtiEA',
+'efTj6UYzvk4',
+'Qit3ALTelOo',
+'0Bmhjf0rKe8',
+'z3U0udLH974',
+'Vw4KVoEVcr0',
+'_ZSbC09qgLI',
+'_ZSbC09qgLI',
+'J---aiyznGQ',
+'C_S5cXbXe-4',
+'X3iFhLdWjqc',
+'hPzNl6NKAG0',
+'TJ5UJv9A4jE',
+'eV71mpbvl-g',
+'gCH68g_R5Iw',
+'S5-D0f6nHSQ',
+'QT2NOQ0P4t8',
+'598IdFlOXcQ',
+'HECa3bAFAYk',
+'tcxhOGyrCtI'
+];
+ 
+var index=Math.floor(Math.random() * videos.length);
+var html='<div id="video"><iframe width="200" height="150"   src="http://www.youtube.com/embed/' + videos[index] + '?modestbranding=1&amp;fs=0&amp;rel=0&amp;hd=1&amp;disablekb=0&amp;egm=1&amp;showsearch=0&amp;showinfo=0&amp;iv_load_policy=0&amp;autoplay=1&amp;loop=0&amp;version=3&amp;controls=0" frameborder="0" allowfullscreen></iframe></div>';
+document.write(html);
+ 
+});
+</script>

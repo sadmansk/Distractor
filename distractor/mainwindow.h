@@ -2,11 +2,12 @@
 #define MAINWINDOW_H
 
 #include "ui_mainwindow.h"
+#include "bubble.h"
+
 #include <QWidget>
 #include <QBasicTimer>
 #include <QString>
 #include <vector>
-#include <string>
 
 namespace Ui {
 class MainWindow;
@@ -18,7 +19,7 @@ class MainWindow : public QWidget
 
 public:
     explicit MainWindow(QWidget *parent = 0);
-    //~MainWindow();
+    ~MainWindow();
     Ui::MainWindow *ui;
     int getDial();
 
@@ -32,6 +33,7 @@ private:
     int interval;
     int dialSetting;
     //Qstring text;
+    std::vector<Bubble*> bubbles;
 
 private slots:
     void on_pushButton_clicked();

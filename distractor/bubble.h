@@ -1,5 +1,5 @@
 // Header File
-/*
+
 #ifndef BUBBLE_H
 #define BUBBLE_H
 
@@ -11,25 +11,28 @@ class Bubble;
 
 class Bubble : public QWidget
 {
-Q_OBJECT
+    Q_OBJECT
 
 public:
-explicit Bubble(QWidget *parent = 0);
-virtual QSize sizeHint() const;
-~Bubble();
-static const int WIDTH = 300, HEIGHT = 300;
+    explicit Bubble(QWidget *parent = 0);
+    virtual QSize sizeHint() const;
+    ~Bubble();
+    static const int WIDTH = 300, HEIGHT = 300;
 
 protected:
-virtual void paintEvent(QPaintEvent *paintEvent);
-void mouseMoveEvent(QMouseEvent* event);
-void mousePressEvent(QMouseEvent* event);
-void mouseReleaseEvent(QMouseEvent* event);
-void repositionBubble();
+    virtual void paintEvent(QPaintEvent *paintEvent);
+    void mouseMoveEvent(QMouseEvent* event);
+    void mousePressEvent(QMouseEvent* event);
+    void mouseReleaseEvent(QMouseEvent* event);
+    void closeEvent (QCloseEvent * event);
+    void repositionBubble();
 
 private:
-Ui::Bubble *ui;
-bool mMoving;
-QPoint offset;
+    Ui::Bubble *ui;
+    bool mMoving;
+    QPoint offset;
+    int screen_width;
+    int screen_height;
 };
 
-#endif // BUBBLE_H*/
+#endif // BUBBLE_H
