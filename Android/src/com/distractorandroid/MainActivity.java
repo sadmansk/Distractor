@@ -32,8 +32,7 @@ implements NavigationDrawerFragment.NavigationDrawerCallbacks {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         startService(new Intent(this, ChatHeadService.class));
-        mNavigationDrawerFragment = (NavigationDrawerFragment)
-        getFragmentManager().findFragmentById(R.id.navigation_drawer);
+        mNavigationDrawerFragment = (NavigationDrawerFragment)getFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
 
         // Set up the drawer.
@@ -47,7 +46,7 @@ implements NavigationDrawerFragment.NavigationDrawerCallbacks {
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
-            .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+            .replace(R.id.mainLayout, PlaceholderFragment.newInstance(position + 1))
             .commit();
     }
 
