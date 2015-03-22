@@ -1,5 +1,8 @@
 #include "mainwindow.h"
-
+#include <iostream>
+#include <iomanip>
+#include <locale>
+#include <sstream>
 #include <QtGui>
 MainWindow::MainWindow (QWidget *parent) : QWidget(parent),ui(new Ui::MainWindow)
 {
@@ -26,9 +29,18 @@ void MainWindow::timerEvent (QTimerEvent *event) {
 void MainWindow::on_pushButton_clicked()
 {
     //ui.outputWidget->setText(QString::number(value + ui.inputSpinBox2->value()));
+    qDebug(ui->textEdit->toPlainText().toLocal8Bit().data());
+    ui->listWidget->addItem(ui->textEdit->toPlainText());
     qDebug("Clicked");
 }
 
 void MainWindow::on_dial_valueChanged(int value) {
-
+    std::ostringstream convert;
+    convert<<value;
+    qDebug(convert.str().c_str());
+    dialSetting=value;
+}
+int MainWindow::getDial()
+{
+    return dialSetting;
 }

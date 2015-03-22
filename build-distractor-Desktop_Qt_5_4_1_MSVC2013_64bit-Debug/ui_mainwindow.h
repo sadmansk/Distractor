@@ -18,7 +18,6 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QListWidget>
-#include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollArea>
 #include <QtWidgets/QStatusBar>
@@ -52,13 +51,14 @@ public:
     QWidget *tab_3;
     QStatusBar *statusBar;
 
-    void setupUi(QMainWindow *MainWindow)
+    void setupUi(QWidget *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
         MainWindow->resize(401, 308);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
+        centralWidget->setGeometry(QRect(0, 0, 411, 301));
         tabWidget = new QTabWidget(centralWidget);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
         tabWidget->setGeometry(QRect(0, 0, 411, 301));
@@ -124,10 +124,9 @@ public:
         tab_3 = new QWidget();
         tab_3->setObjectName(QStringLiteral("tab_3"));
         tabWidget->addTab(tab_3, QString());
-        MainWindow->setCentralWidget(centralWidget);
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
-        MainWindow->setStatusBar(statusBar);
+        statusBar->setGeometry(QRect(0, 0, 3, 20));
 
         retranslateUi(MainWindow);
 
@@ -137,7 +136,7 @@ public:
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
 
-    void retranslateUi(QMainWindow *MainWindow)
+    void retranslateUi(QWidget *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
         label->setText(QApplication::translate("MainWindow", "Notification Frequency", 0));
